@@ -18,3 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+   Route::resource("drink","DrinkController");
+   Route::resource("food","FoodController");
+   Route::resource("table","TableController");
+});

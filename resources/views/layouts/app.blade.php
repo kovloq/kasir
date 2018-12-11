@@ -53,6 +53,15 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link"><i class="fas fa-home"></i> Dashboard</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url("food") }}" class="nav-link"><i class="fas fa-utensils"></i> Food</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url("drink") }}" class="nav-link"><i class="fas fa-coffee"></i> Drink</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url("table") }}" class="nav-link"><i class="fas fa-receipt"></i> Table</a>
+                        </li>
                     </ul>
                 </div>
             </nav>

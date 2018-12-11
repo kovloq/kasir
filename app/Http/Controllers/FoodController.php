@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Food;
 
 class FoodController extends Controller
 {
@@ -14,6 +15,8 @@ class FoodController extends Controller
     public function index()
     {
         //
+        $food=Food::all();
+        return view("food.index")->with("food",$food);
     }
 
     /**
@@ -24,6 +27,7 @@ class FoodController extends Controller
     public function create()
     {
         //
+        return view("food.create");
     }
 
     /**
@@ -35,6 +39,12 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         //
+        Food::create(array(
+            "name"=>$request["name"],
+            "is_ready"=>$request["is_ready"],
+            "price"=>$request["price"]
+        ));
+        return back();
     }
 
     /**
@@ -57,6 +67,8 @@ class FoodController extends Controller
     public function edit($id)
     {
         //
+        $food=Food::find($id);
+        return view("food.edit")->with("food",$food);
     }
 
     /**
@@ -69,6 +81,12 @@ class FoodController extends Controller
     public function update(Request $request, $id)
     {
         //
+        Food::find($id)->update(array(
+            "name"=>$request["name"],
+            "is_ready"=>$request["is_ready"],
+            "price"=>$request["price"]
+        ));
+        return redirect("food");
     }
 
     /**
@@ -80,5 +98,7 @@ class FoodController extends Controller
     public function destroy($id)
     {
         //
+        Food::find($id)->delete();
+        return back();
     }
 }

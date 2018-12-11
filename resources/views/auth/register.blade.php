@@ -10,9 +10,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery-3.3.1.min.js" defer></script>
-    <script src="{{ asset('js/popper.min.js" defer></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset("js/jquery-3.3.1.min.js") }}"></script>
+    <script src="{{ asset("js/popper.min.js") }}"></script>
+    <script src="{{ asset("js/bootstrap.min.js") }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
