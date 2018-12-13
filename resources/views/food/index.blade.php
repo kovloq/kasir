@@ -15,12 +15,12 @@
 		<th>{{ $row["name"] }}</th>
 		<th>{{ $row["price"] }}</th>
 		<th>{{ ($row["is_ready"])?"〇":"✕" }}</th>
-		<th><a href="{{ url("food/".$row["id"]."/edit") }}" class="btn btn-warning"></a></th>
+		<th><a href="{{ url("food/".$row["id"]."/edit") }}" class="btn btn-warning">Edit</a></th>
 		<th>
 			<form method="POST" action="{{ url("food",$row["id"]) }}">
 				{{ csrf_field() }}
 				{{ method_field("DELETE") }}
-				<input type="submit" value="Delete" class="btn btn-warning">
+				<input type="submit" value="Delete" class="btn btn-danger">
 			</form>
 		</th>
 	</tr>

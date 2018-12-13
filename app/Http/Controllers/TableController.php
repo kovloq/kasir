@@ -15,7 +15,8 @@ class TableController extends Controller
     public function index()
     {
         //
-        return view("table.index");
+        $table=Table::all();
+        return view("table.index")->with("table",$table);
     }
 
     /**
@@ -26,6 +27,7 @@ class TableController extends Controller
     public function create()
     {
         //
+        return view("table.create");
     }
 
     /**
@@ -37,6 +39,13 @@ class TableController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+        'nomor' => 'required'
+        ]);
+        Table::create(array(
+            "nomor"=>$request["nomor"]
+        ));
+        return redirect("table");
     }
 
     /**
@@ -59,6 +68,8 @@ class TableController extends Controller
     public function edit($id)
     {
         //
+        $table=Table::find($id);
+        return view("table.edit")->with("table",$table);
     }
 
     /**
@@ -71,6 +82,13 @@ class TableController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+        'nomor' => 'required'
+        ]);
+        Table::find($id)->update(array(
+            "nomor"=>$request["nomor"]
+        ));
+        return redirect("table");
     }
 
     /**
@@ -82,5 +100,7 @@ class TableController extends Controller
     public function destroy($id)
     {
         //
+        Table::find($id)->delete();
+        return back();
     }
 }

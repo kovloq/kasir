@@ -15,7 +15,8 @@ class DrinkController extends Controller
     public function index()
     {
         //
-        return view("drink.index");
+        $drink=Drink::all();
+        return view("drink.index")->with("drink",$drink);
     }
 
     /**
@@ -26,6 +27,7 @@ class DrinkController extends Controller
     public function create()
     {
         //
+        return view("drink.create");
     }
 
     /**
@@ -37,6 +39,16 @@ class DrinkController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+        'name' => 'required|string',
+        'price' => 'required|integer',
+        ]);
+        Drink::create(array(
+            "name"=>$request["name"],
+            "is_ready"=>$request["is_ready"],
+            "price"=>$request["price"]
+        ));
+        return redirect("drink");
     }
 
     /**
@@ -59,6 +71,8 @@ class DrinkController extends Controller
     public function edit($id)
     {
         //
+        $drink=Drink::find($id);
+        return view("drink.edit")->with("drink",$drink);
     }
 
     /**
@@ -71,6 +85,16 @@ class DrinkController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $request->validate([
+        'name' => 'required|string',
+        'price' => 'required|integer',
+        ]);
+        Drink::find($id)->update(array(
+            "name"=>$request["name"],
+            "is_ready"=>$request["is_ready"],
+            "price"=>$request["price"]
+        ));
+        return redirect("drink");
     }
 
     /**
@@ -82,5 +106,7 @@ class DrinkController extends Controller
     public function destroy($id)
     {
         //
+        Drink::find($id)->delete();
+        return back();
     }
 }

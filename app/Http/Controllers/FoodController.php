@@ -39,12 +39,16 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+        'name' => 'required|string',
+        'price' => 'required|integer',
+        ]);
         Food::create(array(
             "name"=>$request["name"],
             "is_ready"=>$request["is_ready"],
             "price"=>$request["price"]
         ));
-        return back();
+        return redirect("food");
     }
 
     /**
@@ -81,6 +85,10 @@ class FoodController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+        'name' => 'required|string',
+        'price' => 'required|integer',
+        ]);
         Food::find($id)->update(array(
             "name"=>$request["name"],
             "is_ready"=>$request["is_ready"],
